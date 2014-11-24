@@ -1,0 +1,898 @@
+/* ==========================================================================
+   Table of Contents
+   ========================================================================== */
+
+/*
+
+    0.  Includes
+    1.  Icons
+    2.  General
+    3.  Utilities
+    4.  General
+    5.  Single Post
+    6.  Third Party Elements
+    7.  Pagination
+    8.  Footer
+    9.  Media Queries (Tablet)
+    10. Media Queries (Mobile)
+
+ */
+
+/* ==========================================================================
+   0. Includes - Ground zero
+   ========================================================================== */
+
+@import url(normalize.css);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,300);
+
+/* ==========================================================================
+   1. Icons - Sets up the icon font and respective classes
+   ========================================================================== */
+
+/* Import the font file with the icons in it */
+@font-face {
+    font-family: 'icons';
+    src:url('../fonts/icons.eot');
+    src:url('../fonts/icons.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/icons.woff') format('woff'),
+        url('../fonts/icons.ttf') format('truetype'),
+        url('../fonts/icons.svg#icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Apply these base styles to all icons */
+.icon-ghost, .icon-feed, .icon-twitter, .icon-google-plus, .icon-facebook {
+    font-family: 'icons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* -webkit-font-smoothing: antialiased; */
+    text-decoration: none;
+}
+
+/* Each icon is created by inserting the corret character into the 
+   content of the :before pseudo element. Like a boss. */
+.icon-ghost:before {
+    content: "\e000";
+}
+.icon-feed:before {
+    content: "\e001";
+}
+.icon-twitter:before {
+    content: "\e002";
+    font-size: 1.1em;
+}
+.icon-google-plus:before {
+    content: "\e003";
+}
+.icon-facebook:before {
+    content: "\e004";
+}
+
+
+/* ==========================================================================
+   2. General - Setting up some base styles
+   ========================================================================== */
+
+body {
+    height: 100%;
+    max-height: 100%;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 1.8rem;
+    line-height: 1.6em;
+    color: #3A4145;
+}
+
+::-moz-selection {
+    color: #222;
+    background: #D6EDFF;
+    text-shadow: none;
+}
+
+::selection {
+    background: rgba(244,170,105,0.2);
+    text-shadow: none;
+}
+
+/* top nav bar */
+.nav-top {
+    background: #303538 no-repeat center center;
+}
+
+.nav-top ul {
+    float: right;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-top .nav li {
+    padding: 0 15px;
+}
+
+.nav-top li {
+    display: inline-block;
+}
+
+.nav-top li a {
+    color: #ccd;
+    padding: 15px 10px;
+}
+
+.nav>li>a:hover, .nav>li>a:focus {
+    text-decoration: none;
+    background-color: transparent;
+    color: #428bca;
+}
+
+/* main page post list */
+/* Every post, on every page, gets this style on its <article> tag */
+.post {
+    position: relative;
+    width:80%;
+    max-width: 700px;
+    margin: 4rem auto;
+    padding-bottom: 4rem;
+    border-bottom: rgba(88,84,72,0.3) 1px solid;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.post-template .post {
+    border-bottom: none;
+}
+
+.post-template pre {
+    border-radius: 0;
+}
+
+.posts {
+    margin: 20px 0;
+}
+.post-meta .datetime {
+    text-align: center;
+}
+.post-meta .datetime .day {
+    color: #428bca;
+    line-height: 1em;
+    font-size: 50px;
+}
+.post-meta .datetime .month-year {
+    line-height: 1em;
+}
+
+.post-title {
+    text-align: left;
+    margin: 0 0 30px 0;
+}
+.post-excerpt {
+    line-height: 1.8;
+    font-size: 18px;
+    color: #666666;
+}
+.post-author {
+    margin: 15px 0;
+}
+
+.post-author img {
+    margin-right: 5px;
+    max-width: 26px;
+    display: inline;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.post-author a {
+    color: #000;
+}
+
+.post-tags {
+  margin-right: 8px;
+}
+.post-tags +a:hover,
+.post-tags +a:focus {
+  color: #428bca;
+}
+.post-meta .post-tags {
+  padding-right: 5px;
+}
+.post-footer .post-tags {
+  margin: 40px 0;
+}
+.post-footer .post-tags a,
+.blog-tags .post-tags a {
+  padding: 6px 12px;
+  display: inline-block;
+  font-size: 14px;
+  background-color: #F7F6F6;
+  color: #808080;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.post-footer .post-tags a:hover,
+.blog-tags .post-tags a:hover,
+.post-footer .post-tags a:focus,
+.blog-tags .post-tags a:focus {
+  background-color: #428bca;
+  color: #fff;
+  -webkit-transition: color, 0.1s, ease-out;
+  -moz-transition: color, 0.1s, ease-out;
+  -o-transition: color, 0.1s, ease-out;
+  transition: color, 0.1s, ease-out;
+}
+.blog-tags .post-tags a {
+  margin: 3px;
+}
+.blog-tags .post-tags {
+  text-align: center;
+}
+
+.post-more {
+    text-align: left;
+    font-size: 14px;
+    padding: 15px 0 20px 0;
+}
+.post-more a {
+    color: #fff;
+    background: #428bca;
+    padding: 10px 20px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.post-more a:hover,
+.post-more afocus {
+  color: #fff;
+  background-color: #3071a9;
+}
+
+a {
+    -webkit-transition: color, ease, 0.5s;
+    transition: color, ease, 0.5s;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+
+/* Big cover image on the home page */
+.site-head {
+    position: relative;
+    top: 58px;
+    display: table;
+    width: 100%;
+    height: 60%;
+    margin-bottom: 10rem;
+    text-align: center;
+    color: #fff;
+    background: #303538 no-repeat center center;
+    background-size: cover;
+    border-bottom: 1px solid #aaa;
+    background-position: center center;
+    -moz-box-shadow: 0 35px 55px 10px rgba(35,25,25,0.05),0 8px 10px 6px 
+rgba(75,50,50,0.1);
+    -webkit-box-shadow: 0 35px 55px 10px rgba(35,25,25,0.05),0 8px 10px 
+6px rgba(75,50,50,0.1);
+    box-shadow: 0 35px 55px 10px rgba(35,25,25,0.05),0 8px 10px 6px 
+rgba(75,50,50,0.1);
+    text-shadow:0 0 5px rgba(0,0,0,0.5);
+}
+
+/* Yo-logo. Yolo-go. Upload one in ghost/settings/ */
+.blog-logo img {
+    display: block;
+    max-height: 100px;
+    width: auto;
+    margin: 10px auto;
+    line-height: 0;
+    border-radius: 100%;
+        overflow: hidden;
+        border: 5px solid #fff;
+        background: #fff;
+        -moz-transition: all 0.3s ease;
+
+        /* WebKit */
+
+        -webkit-transition: all 0.3s ease;
+
+        /* Opera */
+
+        -o-transition: all 0.3s ease;
+
+        /*Standar*/
+        transition: all 0.3s ease;
+
+}
+
+.blog-logo img:hover{
+    opacity: 1;
+    /* Firefox */
+    -moz-transform: scale(1.2) rotate(360deg);
+    /* WebKit */
+    -webkit-transform: scale(1.2) rotate(360deg);
+    /* Opera */
+    -o-transform: scale(1.2) rotate(360deg);
+    /* Standard */
+    transform: scale(1.2) rotate(360deg);
+}
+
+/* ==========================================================================
+   7. Pagination - Tools to let you flick between pages
+   ========================================================================== */
+
+/* The main wrapper for our pagination links */
+.pagination {
+    position: relative;
+    width: 80%;
+    max-width: 700px;
+    margin: 4rem auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3rem;
+    color: #BF3636;
+    text-align: center;
+}
+
+.pagination a {
+    color: #585448;
+}
+
+/* Push the previous/next links out to the left/right */
+.older-posts,
+.newer-posts {
+    position: absolute;
+    display: inline-block;
+    padding: 0 15px;
+    border: rgba(244,170,105,0.3) 2px solid;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: border ease 0.3s;
+}
+
+.older-posts {
+    right: 0;
+}
+
+.page-number {
+    display: inline-block;
+    padding: 2px 0;
+}
+
+.newer-posts {
+    left: 0;
+}
+
+.older-posts:hover,
+.newer-posts:hover {
+    border-color: #F4AA69;
+}
+
+
+
+
+.content {
+    position: relative;
+    top: 50px;
+}
+
+
+/* ==========================================================================
+   8. Footer - The bottom of every page
+   ========================================================================== */
+
+.site-footer {
+    position: relative;
+    margin: 8rem 0 0 0;
+    padding: 4rem 0;
+    border-top: #BF3636 1px solid;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3rem;
+    line-height: 1.7em;
+    color: #0C0D0C;
+    text-align: center;
+    background: #f1f1f1;
+}
+
+.site-footer a {
+    color: #BF3636;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    color: #585448;
+}
+
+.poweredby .icon-ghost {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.poweredby .icon-ghost:hover {
+    text-decoration: none;
+}
+
+.poweredby .icon-ghost:before {
+    font-size: 1rem;
+    margin-right: 0.2em;
+}
+
+/* The subscribe icon on the footer */
+.subscribe {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    margin-left: -15px;
+    border: #BF3636 1px solid;
+    text-align: center;
+    line-height: 2.4rem;
+    border-radius: 50px;
+    background: #fff;
+    transition: box-shadow 0.5s;
+}
+
+/* The RSS icon, inserted via icon font */
+.subscribe:before {
+    color: #BF3636;
+    font-size: 10px;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    font-weight: bold;
+    transition: color 0.5s ease;
+}
+
+/* Add a box shadow to on hover */
+.subscribe:hover {
+    box-shadow: rgba(0,0,0,0.05) 0 0 0 3px;
+    transition: box-shadow 0.25s;
+}
+
+.subscribe:hover:before {
+    color: #50585D;
+}
+
+/* CSS tooltip saying "Subscribe!" - initially hidden */
+.tooltip {
+    opacity:0;
+    display: inline-block;
+    padding: 4px 8px 5px 8px;
+    position:absolute;
+    top: -23px;
+    left: -23px;
+    color: rgba(255,255,255,0.9);
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1em;
+    text-align: center;
+    background: #50585D;
+    border-radius:20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    transition: opacity 0.3s ease, top 0.3s ease;
+}
+
+/* The little chiclet arrow under the tooltip, pointing down */
+.tooltip:after {
+    content:"";
+    border-width:5px 5px 0 5px;
+    border-style:solid;
+    border-color: #50585D transparent;
+    display:block;
+    position:absolute;
+    bottom:-4px;
+    left:50%;
+    margin-left:-5px;
+    z-index: 220;
+    width:0;
+}
+
+/* On hover, show the tooltip! */
+.subscribe:hover .tooltip {
+    opacity: 1;
+    top: -33px;
+}
+
+
+/* ==========================================================================
+   9. Media Queries - Smaller than 900px
+   ========================================================================== */
+
+@media only screen and (max-width: 900px) {
+
+    blockquote {
+        margin-left: 0;
+    }
+
+    .site-head {
+        -webkit-box-sizing: border-box; 
+        -moz-box-sizing: border-box;
+        box-sizing: border-box; 
+        height: auto;
+        min-height: 240px;
+        padding: 15% 0;
+    }
+
+    .blog-title {
+        font-size: 4rem;
+        letter-spacing: -1px;
+    }
+
+    .blog-description {
+        font-size: 1.7rem;
+        line-height: 1.5em;
+    }
+
+    .post {
+        font-size: 0.9em;
+        line-height: 1.6em;
+    }
+
+    .post-template .post {
+        padding-bottom: 1rem;
+    }
+
+    .post-template .post-header {
+        padding: 40px 0;
+    }
+
+    h1 {
+        font-size: 4.8rem;
+        text-indent: -2px;
+    }
+
+    h2 {
+        font-size: 3.8rem;
+    }
+
+    h3 {
+        font-size: 3.3rem;
+    }
+
+    h4 {
+        font-size: 2.8rem;
+    }
+
+}
+
+/* ==========================================================================
+   10. Media Queries - Smaller than 500px
+   ========================================================================== */
+
+
+@media only screen and (max-width: 500px) {
+
+    #blog-logo img {
+        max-height: 80px;
+    }
+
+    .inner, 
+    .pagination {
+        width: auto;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .post {
+        width:auto;
+        margin-left: 16px;
+        margin-right: 16px;
+        font-size: 0.8em;
+        line-height: 1.6em;
+    }
+
+    .site-head {
+        padding: 10% 0;
+    }
+
+    .blog-title {
+        font-size: 3rem;
+    }
+
+    .blog-description {
+        font-size: 1.5rem;
+    }
+
+
+    h1, h2 {
+        font-size: 3rem;
+        line-height: 1.1em;
+        letter-spacing: -1px;
+    }
+
+    h3 {
+        font-size: 2.8rem;
+    }
+
+    h4 {
+        font-size: 2.3rem;
+    }
+
+    .post-template .post {
+        padding-bottom: 0;
+    }
+
+    .post-template .post-header {
+        padding: 30px 0;
+    }
+
+    .post-meta {
+        font-size: 1.3rem;
+    }
+
+    .post-footer {
+        padding: 4rem 0;
+        text-align: center;
+    }
+
+    .post-footer .author {
+        margin: 0 0 2rem 0;
+        padding: 0 0 1.6rem 0;
+        border-bottom: #EBF2F6 1px dashed;
+    }
+
+    .post-footer .share {
+        position: static;
+        width: auto;
+    }
+
+    .post-footer .share a {
+        margin: 1.4rem 0.8rem 0 0.8rem;
+    }
+
+    .older-posts,
+    .newer-posts {
+        position: static;
+        margin: 10px 0;
+    }
+
+    .page-number {
+        display: block;
+    }
+
+    .site-footer {
+        margin-top: 6rem;
+        font-size: 1.1rem;
+    }
+
+}
+
+.post-footer {
+    margin-top: 5em;
+    text-align: right;
+}
+
+
+/* The author credit area after the post */
+.post-footer {
+    position: relative;
+    margin: 4rem 0 2rem 0;
+    padding: 4rem 0 0 0;
+    border-top: #EBF2F6 1px solid;
+}
+
+.post-footer h4 {
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 400;
+}
+.post-footer h4 a {
+      text-decoration: none;
+}
+
+.post-footer p {
+    margin: 1rem 0;
+    font-size: 1.4rem;
+    line-height: 1.6em;
+}
+
+/* Create some space to the right for the share links */
+.post-footer .author {
+    margin-right: 180px;
+    text-align: justify;
+}
+.post-footer .author .author-pic {
+    background-size: cover;
+    border-radius: 100%;
+    margin: 0 10px 5px 0;
+    float: left;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    top: -15px;
+
+}
+/* Drop the share links in the space to the right.
+   Doing it like this means it's easier for the author bio
+   to be flexible at smaller screen sizes while the share
+   links remain at a fixed width the whole time */
+.post-footer .share {
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    width: 140px;
+}
+
+.post-footer .share a {
+    font-size: 1.8rem;
+    display: inline-block;
+    margin: 1.4rem 1.6rem 1.6rem 0;
+    color: #BBC7CC;
+}
+
+.post-footer .share a:hover {
+    color: #50585D;
+}
+
+/* ==========================================================================
+   End of file. Media queries should be the last thing here. Do not add stuff
+   below this point, or it will probably fuck everything up.
+   ========================================================================== */
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+.clearfix { display: inline-table; }
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* End hide from IE-mac */
+
+
+
+/** projects page **/
+.project-content {
+    position: relative;
+    top: 58px;
+    background: url(http://ghost-nuevo.referenteweb.com/content/images/2014/Feb/background-1.jpg) 50% 50% no-repeat fixed;
+}
+
+
+.center{ display: block; width: 900px; margin: 0 auto; padding: 0 20px; }
+.timeline { position: relative; }
+div.timeline div.spine{
+    width: 2px;
+    background: #428bca;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    margin-left: -1px;
+}
+
+div.timeline article{
+    margin-top: 80px;
+    width: 410px;
+    padding: 20px;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+
+div.timeline article.ep-last{ margin-top: 120px; float: right; }
+div.timeline article span.arrow{
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    top: 10%;
+    left: 98%;
+    margin-left: 10px;
+    position: absolute;
+    z-index: 100;
+    border: 2px solid #428bca;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    -webkit-transition: all 300ms linear;
+    -moz-transition: all 300ms linear;
+    -ms-transition: all 300ms linear;
+    -o-transition: all 300ms linear;
+    transition: all 300ms linear;
+}
+div.timeline article.ep-last span.arrow{ left: -3%; margin-left: 0; }
+div.timeline article:hover span.arrow{ background: #428bca; }
+div.timeline article header time{
+    position: absolute;
+    top: -35px;
+    left: -35px;
+    width: 70px;
+    height: 70px;
+    font-size: 12px;
+    line-height: 1;
+    padding-top: 15px;
+    text-align: center;
+    color: #fff;
+    background: #428bca;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+}
+div.timeline article.ep-last time{ left: inherit; right: -30px; }
+div.timeline article header time span{
+    display: block;
+    font: 30px/1 'Lato';
+    margin-top: 0px;   
+}
+div.timeline article header h2{ margin-top: 10px; }
+div.timeline article header h2 a{ font: 18px/1.4 'Lato'; color: #428bca;  }
+div.timeline article header h2 a:hover{ color: #333; }
+div.timeline article a.thumb{ display: block; overflow: hidden; position: relative; }
+div.timeline article a.thumb i.fa-link{
+    display: block;
+    width: 30px;
+    height: 30px;
+    color: #333;
+    text-align: center;
+    line-height: 30px;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: -100%;
+    margin: -15px 0 0 -15px;
+    z-index: 2;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    -webkit-transition: all 300ms linear;
+    -moz-transition: all 300ms linear;
+    -ms-transition: all 300ms linear;
+    -o-transition: all 300ms linear;
+    transition: all 300ms linear;
+}
+div.timeline article a.thumb:hover i.fa-link{ top: 50%; }
+div.timeline article a.thumb img{
+    width: 100%;
+    height: auto;   
+}
+div.timeline article .post-excerpt{ margin-top: 5px; font-size: 12px; }
+div.timeline article footer p.tags{ color: #666; font-size: 11px; }
+
+
+div.timeline article{
+    margin-top: 80px;
+    width: 410px;
+    padding: 20px;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+/* @group Global Columns */
+
+.ep-one-half{ width: 48%; }
+.ep-one-third{ width: 30.66%; }
+.ep-two-third{ width: 65.33%; }
+.ep-one-fourth{ width: 22%; }
+.ep-three-fourth{ width: 74%; }
+.ep-one-fifth{ width: 16.8%; }
+.ep-two-fifth{ width: 37.6%; }
+.ep-three-fifth{ width: 58.4%; }
+.ep-four-fifth{ width: 67.2%; }
+.ep-one-sixth{ width: 13.33%; }
+.ep-five-sixth{ width: 82.67%; }
+.ep-one-half, .ep-one-third, .ep-two-third, .ep-three-fourth, .ep-one-fourth, .ep-one-fifth, .ep-two-fifth, .ep-three-fifth, .ep-four-fifth, .ep-one-sixth, .ep-five-sixth{
+    position: relative;
+    margin: 0 4% 20px 0;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.ep-last{ margin-right: 0!important; clear: right; }
+div.timeline article.ep-last{ margin-top: 120px; float: right; }
