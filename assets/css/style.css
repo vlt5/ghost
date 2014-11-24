@@ -341,6 +341,7 @@ rgba(75,50,50,0.1);
     font-size: 1.3rem;
     color: #BF3636;
     text-align: center;
+    display: block;
 }
 
 .pagination a {
