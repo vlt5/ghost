@@ -345,7 +345,7 @@ rgba(75,50,50,0.1);
 }
 
 .pagination a {
-    color: #585448;
+    /*color: #585448;*/
 }
 
 /* Push the previous/next links out to the left/right */
@@ -354,7 +354,7 @@ rgba(75,50,50,0.1);
     position: absolute;
     display: inline-block;
     padding: 0 15px;
-    border: rgba(244,170,105,0.3) 2px solid;
+    /*border: rgba(244,170,105,0.3) 2px solid;*/
     text-decoration: none;
     border-radius: 30px;
     transition: border ease 0.3s;
@@ -393,7 +393,7 @@ rgba(75,50,50,0.1);
 
 .site-footer {
     position: relative;
-    margin: 8rem 0 0 0;
+    margin: 15rem 0 0 0;
     padding: 4rem 0;
     border-top: #BF3636 1px solid;
     font-family: 'Open Sans', sans-serif;
