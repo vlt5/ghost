@@ -345,8 +345,13 @@ rgba(75,50,50,0.1);
 }
 
 .pagination a {
-    /*color: #585448;*/
+    color: #BF3636;
 }
+
+.pagination a:hover {
+    color: #337ab7;
+}
+
 
 /* Push the previous/next links out to the left/right */
 .older-posts,
